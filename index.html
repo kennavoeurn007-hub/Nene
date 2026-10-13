@@ -1,1 +1,64 @@
 
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For Nene 🌸</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;font-family:Arial,sans-serif;background:linear-gradient(135deg,#ffe0ec,#f3d9ff)}
+.card{width:90%;max-width:390px;padding:35px 20px;text-align:center;background:#ffffffed;border:2px solid white;border-radius:25px;box-shadow:0 12px 35px #ce87bb44;z-index:2}
+.emoji{font-size:55px}
+h1{color:#df5796;font-size:28px}
+h2{color:#65465e;font-size:22px;line-height:1.8}
+p{color:#99758f;font-size:15px}
+.buttons{display:flex;justify-content:center;gap:15px;margin-top:30px}
+button{padding:13px 27px;border:0;border-radius:30px;font-size:17px;font-weight:bold;cursor:pointer}
+#yes{background:#ec70aa;color:white}
+#no{position:fixed;background:#eee;color:#555;z-index:10}
+#message{display:none;color:#d94e91;font-size:19px;line-height:1.8;margin-top:25px}
+.floating{position:fixed;bottom:-40px;pointer-events:none;animation:up 7s linear infinite}
+@keyframes up{to{transform:translateY(-110vh) rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="card">
+<div class="emoji">🌸</div>
+<h1>Hi, Nene!</h1>
+<h2>ពេលជាដាច់ទៅញុំសាច់អត់?</h2>
+<p>ជ្រើសរើសចម្លើយមួយ 👇</p>
+<div class="buttons">
+<button id="yes" onclick="sayYes()">ទៅ</button>
+<button id="no">អត់ទៅ</button>
+</div>
+<div id="message">បានៗ ជួបគ្នាពេលក្រោយ 😄</div>
+</div>
+<script>
+const no=document.getElementById('no');
+function moveButton(){
+const x=Math.max(10,Math.random()*Math.max(1,innerWidth-no.offsetWidth-20));
+const y=Math.max(10,Math.random()*Math.max(1,innerHeight-no.offsetHeight-20));
+no.style.left=x+'px';no.style.top=y+'px';
+}
+no.addEventListener('mouseenter',moveButton);
+no.addEventListener('touchstart',e=>{e.preventDefault();moveButton()},{passive:false});
+no.addEventListener('click',moveButton);
+function sayYes(){
+document.getElementById('message').style.display='block';
+document.getElementById('yes').textContent='ទៅ ✓';
+}
+for(let i=0;i<15;i++){
+const el=document.createElement('div');
+el.className='floating';el.textContent=['🌸','💗','✨'][i%3];
+el.style.left=Math.random()*100+'vw';
+el.style.animationDelay=Math.random()*7+'s';
+el.style.animationDuration=(5+Math.random()*5)+'s';
+el.style.fontSize=(16+Math.random()*15)+'px';
+document.body.appendChild(el);
+}
+window.addEventListener('load',moveButton);
+</script>
+</body>
+</html>
+
